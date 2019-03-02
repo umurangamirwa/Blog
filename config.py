@@ -6,7 +6,7 @@ class Config:
     '''
     QUOTES_API_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:123abc@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:123abc@localhost/Blog'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
     #  email configurations
@@ -27,11 +27,11 @@ class ProdConfig(Config):
 
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:123abc@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:123abc@localhost/Blog'
 
 class DevConfig(Config):
     
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:123abc@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:123abc@localhost/Blog'
     DEBUG = True
 
 config_options = {
