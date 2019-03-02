@@ -9,4 +9,11 @@ To clone this click here
 * To see one of table just write ip2/ SELECT * FROM name of table;
 * ./start.sh
 * python3.6 manage.py shell
+## Technologies Used
+html
+Python v3.6
+Boostrap
+Flask
+
+
 
