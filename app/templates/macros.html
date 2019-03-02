@@ -5,6 +5,10 @@
                 <h4>{{blog.blog_title}}</h4>
                 <p>{{blog.blog_content| truncate(100)}}</p>
                 <p>Written by:  {{blog.user.username}} <a href="/blog/{{blog.id}}" class="btn btn-primary pull-right">Read</a> </p>
+                <a href="/delete_blog/{{blog.id}}" class="btn btn-primary pull-right" style="margin-bottom:60px;">Delete Blog</a>
+                
+                
+        </div>
             </div>
         </div>
     {%endfor%}

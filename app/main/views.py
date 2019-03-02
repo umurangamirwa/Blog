@@ -108,7 +108,7 @@ def blog(id):
 @main.route('/user/<uname>/blogs', methods = ['GET','POST'])
 def user_blogs(uname):
     user = User.query.filter_by(username = uname).first()
-    blogs = Pitch.query.filter_by(user_id = user.id).all()
+    blogs = Blog.query.filter_by(user_id = user.id).all()
     blog_count = Blog.count_blogs(uname)
 
     return render_template('profile/blogs.html', user = user, blogs = blogs, blogs_count = blog_count)
