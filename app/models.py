@@ -50,6 +50,10 @@ class Blog(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def delete_blog(self):
+        db.session.delete(self)
+        db.session.commit()
+
     @classmethod
     def get_blog(cls,id):
         blog = Blog.query.filter_by(id = id).first()
@@ -89,3 +93,11 @@ class Comment(db.Model):
 
     def __repr__(self):
         return f'Comment{self.comment}'
+
+class Subscription(UserMixin, db.Model):
+    __tablename__ = 'subs'
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255), unique=True, index=True, nullable=False)
+
+    def __repr__(self):
+        return f'{self.email}'
