@@ -78,10 +78,12 @@ def blog(id):
     if request.args.get('like'):
         blog.likes += 1
 
-        db.session.add(pitch)
+        db.session.add(blog)
         db.session.commit()
 
         return redirect(url_for('.blog', id = blog.id))
+
+        
 
     elif request.args.get('dislike'):
         blog.dislikes += 1
@@ -114,7 +116,7 @@ def user_blogs(uname):
     return render_template('profile/blogs.html', user = user, blogs = blogs, blogs_count = blog_count)
 
 @main.route('/subscribe/', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def sub():
     """
     Function that enables one to subscribe to the blog
@@ -127,3 +129,15 @@ def sub():
         return redirect(url_for('main.index'))
 
     return render_template('sub.html', form=form)
+
+@main.route('/delete_blog/<int:id>', methods = ["GET","POST"])
+def delete_blog(id):
+    blog = Blog.get_blog(id)
+    # posted_date = blog.posted.strftime('%b %d, %Y')
+    # if request.args.get('like'):
+    #     blog.likes += 1
+
+    db.session.delete(blog)
+    db.session.commit()
+
+    return redirect(url_for('.index'))
