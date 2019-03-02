@@ -1,8 +1,8 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import User,Blog,Comment
+from ..models import User,Blog,Comment,Subsrciption
 from .. import db,photos
-from .forms import UpdateProfile,BlogForm,CommentForm
+from .forms import UpdateProfile,BlogForm,CommentForm, SubscribeForm
 from flask_login import login_required,current_user
 import datetime
 
@@ -103,10 +103,28 @@ def blog(id):
 
     return render_template('blog.html', blog = blog, comment_form = form,comments = comments, date = posted_date)
 
-@main.route('/user/<uname>/pitches', methods = ['GET','POST'])
+
+
+@main.route('/user/<uname>/blogs', methods = ['GET','POST'])
 def user_blogs(uname):
     user = User.query.filter_by(username = uname).first()
     blogs = Pitch.query.filter_by(user_id = user.id).all()
     blog_count = Blog.count_blogs(uname)
 
     return render_template('profile/blogs.html', user = user, blogs = blogs, blogs_count = blog_count)
+
+@main.route('subscribe/', methods=['GET','POST'])
+@login_required
+def sub():
+    """
+    Function that enables one to subscribe to theblog
+    """
+    form = SubscribeForm()
+    if form.validate_on_submit(): 
+        subscription = Subsrciption(email=form.email.data)
+        db.session.add(subsrciption)
+        db.session.commit()
+
+        return redirect(url_for('main.index'))
+
+    return render_template('sub.html', form=form)
