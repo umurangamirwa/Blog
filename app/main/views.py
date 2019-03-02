@@ -7,52 +7,52 @@ from flask_login import login_required,current_user
 import datetime
 
 
-@main.route('/')
-def index():
-    pickup = blog.get_blogs('blogup')
-    interview = blog.get_blogs('interview')
-    product = blog.get_blogs('product')
-    promotion = blog.get_blogs('promotion')
+# @main.route('/')
+# def index():
+#     # pickup = Pitch.get_pitches('pickup')
+#     interview = Blog.get_blogs('interview')
+#     product = Blog.get_blogs('product')
+#     promotion = Blog.get_blogs('promotion')
 
-    return render_template('index.html', title = 'blog App - Home', blogup = blogup, interview = interview, promotion = promotion, product = product)
+#     return render_template('index.html', title = 'Blog App - Home',interview = interview, promotion = promotion, product = product)
 
-@main.route('/blogs/blog0............up')
-def blogup():
-    blogger = blog.get_blogs('blogup lines')
+# @main.route('/blogs/pickup')
+# def pickup():
+#     pitches = Pitch.get_pitches('pickup lines')
 
-    return render_template('blogup.html',blogs = blogs)
-
-
-@main.route('/blogs/interview')
-def interview():
-    blogs = blog.get_blogs('interview')
-
-    return render_template('interview.html',blogs = blogs)
+#     return render_template('pickup.html',pitches = pitches)
 
 
-@main.route('/blogs/product')
-def product():
-    blogs = blog.get_blogs('product')
+# @main.route('/pitches/interview')
+# def interview():
+#     pitches = Pitch.get_pitches('interview')
 
-    return render_template('product.html',blogger = blogger)
+#     return render_template('interview.html',pitches = pitches)
 
 
-@main.route('/blogger/promotion')
-def promotion():
-    blogs = blog.get_blogs('promotion')
+# @main.route('/pitches/product')
+# def product():
+#     pitches = Pitch.get_pitches('product')
 
-    return render_template('promotion.html',blogger = blogger)
+#     return render_template('product.html',pitches = pitches)
+
+
+# @main.route('/pitches/promotion')
+# def promotion():
+#     pitches = Pitch.get_pitches('promotion')
+
+#     return render_template('promotion.html',pitches = pitches)
 
 
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
-    blog_count = blo.count_blogger(uname)
+    blog_count = Blog.count_blogs(uname)
 
     if user is None:
         abort(404)
 
-    return render_template('profile/profile.html',user = user, blogger = blog_count)
+    return render_template('profile/profile.html',user = user, blogs = blogs_count)
 
 
 @main.route('/user/<uname>/update', methods = ['GET','POST'])
@@ -89,27 +89,27 @@ def update_pic(uname):
 @main.route('/blog/new', methods = ['GET','POST'])
 @login_required
 def new_blog():
-    form = blogForm()
+    form = BlogForm()
     if form.validate_on_submit():
         title = form.title.data
         blog = form.text.data
-        category = form.category.data
+        # category = form.category.data
 
-        new_blog = blog(blog_title = title,blog_content = blog, category = category,user = current_user,likes = 0, dislikes = 0)
+        new_blog = Blog(blog_title = title,blog_content = blog,user = current_user,likes = 0, dislikes = 0)
         new_blog.save_blog()
         return redirect(url_for('main.index'))
 
-    title = 'New blog'
+    title = 'New Blog'
     return render_template('new_blog.html', title = title, blog_form = form)
 
 @main.route('/blog/<int:id>', methods = ["GET","POST"])
 def blog(id):
-    blog = blog.get_blog(id)
+    blog = Blog.get_blog(id)
     posted_date = blog.posted.strftime('%b %d, %Y')
     if request.args.get('like'):
         blog.likes += 1
 
-        db.session.add(blog)
+        db.session.add(pitch)
         db.session.commit()
 
         return redirect(url_for('.blog', id = blog.id))
@@ -117,7 +117,7 @@ def blog(id):
     elif request.args.get('dislike'):
         blog.dislikes += 1
 
-        db.session.add(blog)
+        db.session.add(pitch)
         db.session.commit()
 
         return redirect(url_for('.blog', id = blog.id))
@@ -134,10 +134,10 @@ def blog(id):
 
     return render_template('blog.html', blog = blog, comment_form = form,comments = comments, date = posted_date)
 
-@main.route('/user/<uname>/blogs', methods = ['GET','POST'])
+@main.route('/user/<uname>/pitches', methods = ['GET','POST'])
 def user_blogs(uname):
     user = User.query.filter_by(username = uname).first()
-    blogs = blog.query.filter_by(user_id = user.id).all()
-    blog_count = blog.count_blogs(uname)
+    blogs = Pitch.query.filter_by(user_id = user.id).all()
+    blog_count = Blog.count_blogs(uname)
 
-    return render_template('profile/blogger.html', user = user, blogger = blogger, blogger_count = blog_count)
+    return render_template('profile/blogs.html', user = user, blogs = blogs, blogs_count = blog_count)

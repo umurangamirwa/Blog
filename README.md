@@ -1,9 +1,7 @@
 ### News pitches website
 ## Created by:Umuranamirwa Marie Claire
 ## Description
-pitch is an application that allows users to use that one minute wisely.
-The users will submit their one minute pitches and other users will vote on them and leave comments to give their feedback on them.
-
+This is an application that allows a writer to publish blogs and users can view and comment on the blogs posted.
 ### Setup/Installation Requirements
 To start using this project use the following commands:
 
