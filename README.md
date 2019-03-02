@@ -14,6 +14,14 @@ html
 Python v3.6
 Boostrap
 Flask
+##contacts:
+
+* Email: umurangamclaire@gmail.com
+* Phone: 0781055307
+* Contact address:Rwanda
+
+
+
 
 
 
