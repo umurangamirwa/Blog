@@ -7,42 +7,11 @@ from flask_login import login_required,current_user
 import datetime
 
 
-# @main.route('/')
-# def index():
-#     # pickup = Pitch.get_pitches('pickup')
-#     interview = Blog.get_blogs('interview')
-#     product = Blog.get_blogs('product')
-#     promotion = Blog.get_blogs('promotion')
-
-#     return render_template('index.html', title = 'Blog App - Home',interview = interview, promotion = promotion, product = product)
-
-# @main.route('/blogs/pickup')
-# def pickup():
-#     pitches = Pitch.get_pitches('pickup lines')
-
-#     return render_template('pickup.html',pitches = pitches)
+@main.route('/')
+def index():
 
 
-# @main.route('/pitches/interview')
-# def interview():
-#     pitches = Pitch.get_pitches('interview')
-
-#     return render_template('interview.html',pitches = pitches)
-
-
-# @main.route('/pitches/product')
-# def product():
-#     pitches = Pitch.get_pitches('product')
-
-#     return render_template('product.html',pitches = pitches)
-
-
-# @main.route('/pitches/promotion')
-# def promotion():
-#     pitches = Pitch.get_pitches('promotion')
-
-#     return render_template('promotion.html',pitches = pitches)
-
+    return render_template('index.html', title = 'Blog App - Home')
 
 @main.route('/user/<uname>')
 def profile(uname):
