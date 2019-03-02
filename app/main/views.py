@@ -10,8 +10,8 @@ import datetime
 @main.route('/')
 def index():
 
-
-    return render_template('index.html', title = 'Blog App - Home')
+    blogs = Blog.query.all()
+    return render_template('index.html', title = 'Blog App - Home', blogs=blogs)
 
 @main.route('/user/<uname>')
 def profile(uname):
