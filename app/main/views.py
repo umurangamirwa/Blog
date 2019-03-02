@@ -1,8 +1,8 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
-from ..models import User,Blog,Comment,Subsrciption
+from ..models import User,Blog,Comment
 from .. import db,photos
-from .forms import UpdateProfile,BlogForm,CommentForm, SubscribeForm
+from .forms import UpdateProfile,BlogForm,CommentForm
 from flask_login import login_required,current_user
 import datetime
 
@@ -21,7 +21,7 @@ def profile(uname):
     if user is None:
         abort(404)
 
-    return render_template('profile/profile.html',user = user, blogs = blogs_count)
+    return render_template('profile/profile.html',user = user, blogs = blog_count)
 
 
 @main.route('/user/<uname>/update', methods = ['GET','POST'])
@@ -113,7 +113,7 @@ def user_blogs(uname):
 
     return render_template('profile/blogs.html', user = user, blogs = blogs, blogs_count = blog_count)
 
-@main.route('subscribe/', methods=['GET','POST'])
+@main.route('/subscribe/', methods=['GET','POST'])
 @login_required
 def sub():
     """
