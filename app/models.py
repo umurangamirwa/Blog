@@ -101,3 +101,10 @@ class Subscription(UserMixin, db.Model):
 
     def __repr__(self):
         return f'{self.email}'
+
+
+class Quotes():
+    def __init__(self, id, author, quote):
+        self.id = id
+        self.author = author
+        self.quote = quote

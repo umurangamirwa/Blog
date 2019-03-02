@@ -7,4 +7,14 @@
     <h1 class="text-center" style="border-bottom: 1px solid #372e5f; padding-bottom: 10px;">Blog Application</h1>
     {{macro.displayBlogs(blogs)}}
 </div>
+<div class="container-fluid">
+    <div class="container">
+      <div class="jumbotron">
+        <p>{{ quote.quote }}</p>
+        <h2>{{ quote.author }}</h2>
+        <h3>{{ quote.id }}</h3>
+      </div>
+    </div>
+</div>
+
 {%endblock%}

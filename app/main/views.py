@@ -5,13 +5,16 @@ from .. import db,photos
 from .forms import UpdateProfile,BlogForm,CommentForm,SubscribeForm
 from flask_login import login_required,current_user
 import datetime
+from ..request import get_quote
 
 
 @main.route('/')
 def index():
 
     blogs = Blog.query.all()
-    return render_template('index.html', title = 'Blog App - Home', blogs=blogs)
+    quote = get_quote()
+    return render_template('index.html', title = 'Blog App - Home', blogs=blogs,quote=quote)
+
 
 @main.route('/user/<uname>')
 def profile(uname):
