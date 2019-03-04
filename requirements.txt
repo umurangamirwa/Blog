@@ -1,4 +1,4 @@
-unattended-upgrades==0.1
+
 urllib3==1.22
 usb-creator==0.3.3
 visitor==0.1.3
