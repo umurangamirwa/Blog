@@ -9,6 +9,7 @@ To clone this click here https://github.com/umurangamirwa/Blog
 * To see one of table just write ip2/ SELECT * FROM name of table;
 * ./start.sh
 * python3.6 manage.py shell
+* https://wecode12.herokuapp.com/
 ## Technologies Used
 html
 Python v3.6
