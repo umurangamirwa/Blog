@@ -13,7 +13,7 @@ def index():
 
     blogs = Blog.query.all()
     quote = get_quote()
-    return render_template('index.html', title = 'Blog App - Home', blogs=blogs,quote=quote)
+    return render_template('index.html', title = 'Blog App - Home',quote=quote, blogs=blogs)
 
 
 @main.route('/user/<uname>')

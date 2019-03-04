@@ -4,10 +4,10 @@
 <!-- Content block -->
 {%block content%}
  <div class="jumbotron text-center" style="background-color:rgb(143, 184, 223); color: black; margin: 10px -100px 30px -100px;">
-    <h1 class="text-center" style="border-bottom: 1px solid #372e5f; padding-bottom: 10px;">Blog Application</h1>
+    <h1 class="text-center" style="border-bottom: 1px solid #372e5f; padding-bottom: 5px;">Blog Application</h1>
     {{macro.displayBlogs(blogs)}}
 </div>
-<div class="container-fluid">
+<div class="col-md-12">
     <div class="container">
       <div class="jumbotron">
         <p>{{ quote.quote }}</p>
